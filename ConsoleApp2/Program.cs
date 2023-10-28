@@ -14,39 +14,46 @@ namespace ConsoleApp2 {
     internal class Program {
 
         static void Main(String[] args) {
-            // intial array of ints to sort and render 
+
+            /*
+             *  Unsorted data that is temporary. We will read from a file later.
+             */
             int[] arr = { 120, 40, 30, 60, 0, 70, 10, 20, 50 };
+
+            /*
+             * Setting up Render Window to draw to.
+             * This also may contain properties for said window.
+             */
             uint frameRate = 30;
-
-            RenderWindow window = new RenderWindow(new VideoMode(1980, 600), "bob");
+            RenderWindow window = new RenderWindow(new VideoMode(800, 600), "bob");
             Color bgColor = new Color(Color.White);
-
-            // set the frame rate of the rendered window
-            // requires unsigned int
-            window.SetFramerateLimit(frameRate);
+            window.SetFramerateLimit(frameRate); // Set framerate of Rendered Window (requires unsigned int).
 
             // A copy of the original array because we don't want to change the orig.
-            int[] rev_array = arr;
-            Rectangles rectShape = new Rectangles();
+            int[] unsortedIntArray = arr;
+
             int x_pos = 10;
             bool isSorted = false;
             int nextElement = 0;
+
             /*
-                * Display the original unsorted array.
-                * First, we have to create an array of objects (drawables) then we can display
-                * array of objects.
-                */
-            RectangleShape[] origObjArray = new RectangleShape[arr.Length];
-            // Now populate the drawable obj array with objs 
-            for (int i = 0; i < arr.Length; i++) {
-                origObjArray[i] = rectShape.Foo(arr[i], x_pos);
-                x_pos = x_pos + 15;
-
-            }
-
-            
-
+             * Create a drawable Rectangles obj and supply it with the Unsorted Interger Array.
+             */
+            CreateRectangles unsortedObjArray = new CreateRectangles(unsortedIntArray);
+            RectangleShape[] foo;
+            // draw the unsorted array to screen
             while (window.IsOpen) {
+                for(int i = 0; i < unsortedIntArray.Length; i++) {
+                    foo = unsortedObjArray.CreateArrayObj();
+                    window.Draw(foo[i]);
+                    window.Display();
+                }
+            }
+        }
+    }
+}
+
+            /*while (window.IsOpen) {
                 x_pos = 10;
                 int xpos = 110;
                 int ypos = 300;
@@ -57,10 +64,10 @@ namespace ConsoleApp2 {
                     window.Draw(origObjArray[i]);                 
                 }
 
-                /*
+                *//*
                 * Bubble Sort
                 * Sort the array using bubble sort method and display the output real-time.
-                */
+                *//*
                 if (!isSorted) {
                     for (int i = 0; i <= rev_array.Length - 1; i++) {
                         for (int j = 0; j < rev_array.Length - i - 1; j++) {
@@ -88,7 +95,7 @@ namespace ConsoleApp2 {
             }
 
 
-
+*/
             /*// Sort the array
             for(int k = 0; k < shapeArray.Length; k++) {
                 Array.Sort(rev_array);
@@ -130,6 +137,3 @@ namespace ConsoleApp2 {
                  window.Display();
                  window.Clear();
              }*/
-        }
-    }
-}
