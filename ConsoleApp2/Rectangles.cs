@@ -32,29 +32,31 @@ namespace ConsoleApp2 {
             this.x_thick = 10; // hardcoded thickness of red border of each retangle
             this.arrayLength = originalArray.Length;
             this.copyOfOrigArray = originalArray;
+            this.y = originalArray[0]; // populate y
+            this.x = 15;
         }
 
         /*
          * Create and set the properties of each individual rectangle such as: height/y value, color, border...
          */
         protected RectangleShape SetPropertiesOfRectangle(int i) {
-            this.prev_x_cord = x;
-            y_height = copyOfOrigArray[i]; // Convert the Element Obj to an Int and assign to y_height.
+            //prev_x_cord = x;
+            this.y_height = copyOfOrigArray[i]; // Convert the Element Obj to an Int and assign to y_height.
             RectangleShape singleRectangle = new RectangleShape(new Vector2f(this.x_thick, this.y_height));
             singleRectangle.FillColor = new Color(Color.Green);
             singleRectangle.OutlineColor = new Color(Color.Red);
             singleRectangle.OutlineThickness = 2;
-            this.cord_x = prev_x_cord + 15;
+            //this.cord_x = prev_x_cord + 15;           
             singleRectangle.Rotation = 180;
-            //singleRectangle.Position = new Vector2f(this.cord_x, 200);
+            singleRectangle.Position = new Vector2f(this.cord_x, 200);
             return singleRectangle;
         }
 
         public RectangleShape[] CreateArrayObj() {
-            this.y_height = y; // We set the y value (height) that we recieve from caller.
             for (int i = 0; i < this.arrayLength; i++) {
+                cord_x = cord_x + x;
                 returnedDrawableObjArray[i] = SetPropertiesOfRectangle(i);
-                Console.WriteLine(returnedDrawableObjArray[i]);
+                ///Console.WriteLine(returnedDrawableObjArray[i]);
             } 
             return returnedDrawableObjArray;
         }

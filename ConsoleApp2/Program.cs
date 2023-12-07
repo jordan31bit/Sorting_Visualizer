@@ -25,28 +25,56 @@ namespace ConsoleApp2 {
              * This also may contain properties for said window.
              */
             uint frameRate = 30;
-            RenderWindow window = new RenderWindow(new VideoMode(800, 600), "bob");
+            RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "bob");
             Color bgColor = new Color(Color.White);
             window.SetFramerateLimit(frameRate); // Set framerate of Rendered Window (requires unsigned int).
 
             // A copy of the original array because we don't want to change the orig.
             int[] unsortedIntArray = arr;
 
-            int x_pos = 10;
-            bool isSorted = false;
-            int nextElement = 0;
-
             /*
              * Create a drawable Rectangles obj and supply it with the Unsorted Interger Array.
              */
-            CreateRectangles unsortedObjArray = new CreateRectangles(unsortedIntArray);
-            RectangleShape[] foo;
+            CreateRectangles unsortedObjArray = new CreateRectangles(arr);
+            RectangleShape[] foo = unsortedObjArray.CreateArrayObj();
             // draw the unsorted array to screen
+            //foo = unsortedObjArray.CreateArrayObj();
+            
+            // testing code
+            Console.WriteLine(foo);
+            for(int j = 0; j < arr.Length; j++) {
+                Console.WriteLine("Boob {0} " + foo[j], j);
+
+            }
+            Console.WriteLine(arr.Length);
+            Console.WriteLine(foo.Length);
+            Console.WriteLine(foo);
+            // end of testing code
+            bool isValid = true;
+            int i = 0;
             while (window.IsOpen) {
-                for(int i = 0; i < unsortedIntArray.Length; i++) {
-                    foo = unsortedObjArray.CreateArrayObj();
+                //window.Clear();
+                while(i < arr.Length) {
                     window.Draw(foo[i]);
+                    /*window.Draw(foo[0]);
+                    window.Draw(foo[1]);
+                    window.Draw(foo[2]);
+                    window.Draw(foo[3]);
+                    window.Draw(foo[4]);
+                    window.Draw(foo[5]);
+                    window.Draw(foo[6]);
+                    window.Draw(foo[7]);
+                    window.Draw(foo[8]);*/
+                    //window.Display();
+                    //System.Threading.Thread.Sleep(1000);
+                    i++;  
+                }
+
+                //window.Clear();
+                //window.Draw(foo[0]);
+                while(isValid) {
                     window.Display();
+                    isValid = false;
                 }
             }
         }
