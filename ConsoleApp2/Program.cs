@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
 using SFML.System;
+using ConsoleApp2;
 using SFML.Window;
+using System.Net;
+using System.Numerics;
 
 namespace ConsoleApp2 {
     internal class Program {
@@ -16,26 +19,42 @@ namespace ConsoleApp2 {
         static void Main(String[] args) {
 
             /*
-             *  Unsorted data that is temporary. We will read from a file later.
+             *  Unsorted data that is temporary. We will read from a file later or RNG the array.
              */
-            int[] arr = { 120, 40, 30, 60, 0, 70, 10, 20, 50 };
+            int[] arr = { 120, 40, 30, 60, 5, 70, 10, 20, 50 };
 
             /*
              * Setting up Render Window to draw to.
              * This also may contain properties for said window.
              */
-            uint frameRate = 30;
-            RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "bob");
+            uint frameRate = 10;
+            RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "SORTING-VISUALIZER");
             Color bgColor = new Color(Color.White);
             window.SetFramerateLimit(frameRate); // Set framerate of Rendered Window (requires unsigned int).
 
             // A copy of the original array because we don't want to change the orig.
             int[] unsortedIntArray = arr;
 
+            MakeGraph boon = new MakeGraph();
+
+            int i = 0;
+            Vector<RectangleShape> shoo;
+            shoo = boon.buildGraph(arr[i]);
+            while(window.IsOpen) {
+                RectangleShape boob = boon.buildGraph(arr[i]);
+                window.Clear();
+                window.Draw(boob);
+                window.Display();
+                i++;
+            }
+        }
+    }
+}
+
             /*
              * Create a drawable Rectangles obj and supply it with the Unsorted Interger Array.
-             */
-            CreateRectangles unsortedObjArray = new CreateRectangles(arr);
+             *//*
+            CreateRectangles unsortedObjArray = new CreateRectangles(unsortedIntArray);
             RectangleShape[] foo = unsortedObjArray.CreateArrayObj();
             // draw the unsorted array to screen
             //foo = unsortedObjArray.CreateArrayObj();
@@ -56,7 +75,7 @@ namespace ConsoleApp2 {
                 //window.Clear();
                 while(i < arr.Length) {
                     window.Draw(foo[i]);
-                    /*window.Draw(foo[0]);
+                    *//*window.Draw(foo[0]);
                     window.Draw(foo[1]);
                     window.Draw(foo[2]);
                     window.Draw(foo[3]);
@@ -64,7 +83,7 @@ namespace ConsoleApp2 {
                     window.Draw(foo[5]);
                     window.Draw(foo[6]);
                     window.Draw(foo[7]);
-                    window.Draw(foo[8]);*/
+                    window.Draw(foo[8]);*//*
                     //window.Display();
                     //System.Threading.Thread.Sleep(1000);
                     i++;  
@@ -79,7 +98,7 @@ namespace ConsoleApp2 {
             }
         }
     }
-}
+}*/
 
             /*while (window.IsOpen) {
                 x_pos = 10;
