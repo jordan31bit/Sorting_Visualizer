@@ -23,7 +23,29 @@ namespace ConsoleApp2 {
                         // return just the whole array
                         return arr;
                     }
-                  
+                }
+            }
+            return arr;
+        }
+
+        public int[] SelectionSort(int[] arr) {
+            int n = arr.Length;
+
+            for (int i = 0; i < n - 1; i++) {
+                // Find the index of the minimum element in the unsorted portion
+                int minIndex = i;
+                for (int j = i + 1; j < n; j++) {
+                    if (arr[j] < arr[minIndex]) {
+                        minIndex = j;
+                    }
+                }
+
+                // Swap the found minimum element with the first unsorted element
+                if (minIndex != i) {
+                    int temp = arr[i];
+                    arr[i] = arr[minIndex];
+                    arr[minIndex] = temp;
+                    return arr;
                 }
             }
             return arr;
