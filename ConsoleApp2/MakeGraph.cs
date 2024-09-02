@@ -12,11 +12,19 @@ namespace ConsoleApp2 {
     public class MakeGraph {
         protected int y;
        
-        public RectangleShape buildGraph(int y) {
-            RectangleShape rectangle = new RectangleShape(new Vector2f(10, y));
-            rectangle.FillColor = Color.White;
-            rectangle.Position = new Vector2f(200, 200);
-            return rectangle;
+        public RectangleShape[] buildGraph(int[] arr, int windowWidth) {
+            RectangleShape[] arrOfObjects = new RectangleShape[arr.Length];
+            int n = 1;
+            Console.WriteLine(windowWidth);
+            for(int i = 0; i < arr.Length; i++) {
+                RectangleShape rectangle = new RectangleShape(new Vector2f(10, arr[i]));
+                rectangle.FillColor = Color.White;
+                rectangle.Position = new Vector2f(windowWidth / arr.Length * n++, 500);
+                rectangle.Rotation = 180;
+                arrOfObjects[i] = rectangle;
+                Console.WriteLine(rectangle.Position);
+            }
+             return arrOfObjects;
         }
     }
 }

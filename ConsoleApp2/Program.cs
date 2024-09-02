@@ -21,13 +21,13 @@ namespace ConsoleApp2 {
             /*
              *  Unsorted data that is temporary. We will read from a file later or RNG the array.
              */
-            int[] arr = { 120, 40, 30, 60, 5, 70, 10, 20, 50 };
-
+            int[] arr = { 120, 40, 30, 60, 5, 70, 10, 20, 50,32,23,445,64,67,78,9,86,75,56,7,98,3,1,67,80,98,43 };
+            //int[] arr = { 30, 20, 10};
             /*
              * Setting up Render Window to draw to.
              * This also may contain properties for said window.
              */
-            uint frameRate = 10;
+            uint frameRate = 30;
             RenderWindow window = new RenderWindow(new VideoMode(1920, 1080), "SORTING-VISUALIZER");
             Color bgColor = new Color(Color.White);
             window.SetFramerateLimit(frameRate); // Set framerate of Rendered Window (requires unsigned int).
@@ -36,16 +36,26 @@ namespace ConsoleApp2 {
             int[] unsortedIntArray = arr;
 
             MakeGraph boon = new MakeGraph();
-
-            int i = 0;
-            Vector<RectangleShape> shoo;
-            shoo = boon.buildGraph(arr[i]);
+            Sorts sorting = new Sorts();
+            int windowWidth = (int)window.Size.X;
+            RectangleShape[] boob = new RectangleShape[arr.Length];
+            int counter = 0;
             while(window.IsOpen) {
-                RectangleShape boob = boon.buildGraph(arr[i]);
                 window.Clear();
-                window.Draw(boob);
-                window.Display();
-                i++;
+                arr = sorting.bubbleSort(arr);
+                boob = boon.buildGraph(arr, windowWidth);
+                if(counter >= arr.Length) {
+                    counter = 0;
+                }
+                for(int i = 0; i < arr.Length; i++) {
+                    window.Draw(boob[i]);
+                    //window.Display();
+                    
+                }
+                window.Display();              
+               
+                //RectangleShape boob = boon.buildGraph(arr[i],windowWidth, arr.Length, i);
+                //window.Display();    
             }
         }
     }
