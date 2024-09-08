@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Net.Http.Headers;
 using SFML.Graphics;
 using SFML.Window;
 
@@ -31,15 +33,19 @@ namespace ConsoleApp2 {
             int windowWidth = (int)window.Size.X;
             int windowHeight = (int)window.Size.Y;
             RectangleShape[] boob = new RectangleShape[arr.Length];
-
-            while(window.IsOpen) {
+            String filename = "poop.png";
+            while (window.IsOpen) {
                 // close window duh
                 if(Keyboard.IsKeyPressed(Keyboard.Key.Q)) {
+                    Texture texture = new Texture(window.Size.X, window.Size.Y);
+                    texture.Update(window);
+                    texture.CopyToImage().SaveToFile(filename);
+                    
                     window.Close();
                 }
                 window.Clear();
-                arr = sorting.SelectionSort(arr);
-                //arr = sorting.bubbleSort(arr);
+                //arr = sorting.SelectionSort(arr);
+                arr = sorting.bubbleSort(arr);
                 boob = boon.buildGraph(arr, windowWidth, windowHeight);
          
                 for(int i = 0; i < arr.Length; i++) {
