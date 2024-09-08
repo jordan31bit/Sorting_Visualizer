@@ -32,7 +32,11 @@ namespace ConsoleApp2 {
             int windowHeight = (int)window.Size.Y;
             RectangleShape[] boob = new RectangleShape[arr.Length];
 
-            while(window.IsOpen) { 
+            while(window.IsOpen) {
+                // close window duh
+                if(Keyboard.IsKeyPressed(Keyboard.Key.Q)) {
+                    window.Close();
+                }
                 window.Clear();
                 arr = sorting.SelectionSort(arr);
                 //arr = sorting.bubbleSort(arr);
