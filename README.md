@@ -2,9 +2,6 @@
 I wanted to write a sorting visual thing in C# and SFML for a while just for learning. Also, I never used SFML before.
 Upon launching the pgm will go full-screen and display the sorts in "real-time".
 
-<img src="poop.png" alt="My cool logo">
-
-
 ![A screenshot of the program running](poop.png)
 
 ## Sorts Supported:
